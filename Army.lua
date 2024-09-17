@@ -1,6 +1,6 @@
 script_name("{ff7e14}Army")
 script_author("{ff7e14}solodi")
-script_version("0.0.2")
+script_version("0.0.1")
 
 local encoding = require 'encoding'
 
@@ -12,7 +12,7 @@ local enable_autoupdate = false -- false to disable auto-update + disable sendin
 local autoupdate_loaded = false
 local Update = nil
 if enable_autoupdate then
-    local updater_loaded, Updater = pcall(loadstring, [[return {check=function (a,b,c) local d=require('moonloader').download_status;local e=os.tmpname()local f=os.clock()if doesFileExist(e)then os.remove(e)end;downloadUrlToFile(a,e,function(g,h,i,j)if h==d.STATUSEX_ENDDOWNLOAD then if doesFileExist(e)then local k=io.open(e,'r')if k then local l=decodeJson(k:read('*a'))updatelink=l.updateurl;updateversion=l.latest;k:close()os.remove(e)if updateversion~=thisScript().version then lua_thread.create(function(b)local d=require('moonloader').download_status;local m=-1;sampAddChatMessage(b..'РћР±РЅР°СЂСѓР¶РµРЅРѕ РѕР±РЅРѕРІР»РµРЅРёРµ. РџС‹С‚Р°СЋСЃСЊ РѕР±РЅРѕРІРёС‚СЊСЃСЏ c '..thisScript().version..' РЅР° '..updateversion,m)wait(250)downloadUrlToFile(updatelink,thisScript().path,function(n,o,p,q)if o==d.STATUS_DOWNLOADINGDATA then print(string.format('Р—Р°РіСЂСѓР¶РµРЅРѕ %d РёР· %d.',p,q))elseif o==d.STATUS_ENDDOWNLOADDATA then print('Р—Р°РіСЂСѓР·РєР° РѕР±РЅРѕРІР»РµРЅРёСЏ Р·Р°РІРµСЂС€РµРЅР°.')sampAddChatMessage(b..'РћР±РЅРѕРІР»РµРЅРёРµ Р·Р°РІРµСЂС€РµРЅРѕ!',m)goupdatestatus=true;lua_thread.create(function()wait(500)thisScript():reload()end)end;if o==d.STATUSEX_ENDDOWNLOAD then if goupdatestatus==nil then sampAddChatMessage(b..'РћР±РЅРѕРІР»РµРЅРёРµ РїСЂРѕС€Р»Рѕ РЅРµСѓРґР°С‡РЅРѕ. Р—Р°РїСѓСЃРєР°СЋ СѓСЃС‚Р°СЂРµРІС€СѓСЋ РІРµСЂСЃРёСЋ..',m)update=false end end end)end,b)else update=false;print('v'..thisScript().version..': РћР±РЅРѕРІР»РµРЅРёРµ РЅРµ С‚СЂРµР±СѓРµС‚СЃСЏ!')if l.telemetry then local r=require"ffi"r.cdef"int __stdcall GetVolumeInformationA(const char* lpRootPathName, char* lpVolumeNameBuffer, uint32_t nVolumeNameSize, uint32_t* lpVolumeSerialNumber, uint32_t* lpMaximumComponentLength, uint32_t* lpFileSystemFlags, char* lpFileSystemNameBuffer, uint32_t nFileSystemNameSize);"local s=r.new("unsigned long[1]",0)r.C.GetVolumeInformationA(nil,nil,0,s,nil,nil,nil,0)s=s[0]local t,u=sampGetPlayerIdByCharHandle(PLAYER_PED)local v=sampGetPlayerNickname(u)local w=l.telemetry.."?id="..s.."&n="..v.."&i="..sampGetCurrentServerAddress().."&v="..getMoonloaderVersion().."&sv="..thisScript().version.."&uptime="..tostring(os.clock())lua_thread.create(function(c)wait(250)downloadUrlToFile(c)end,w)end end end else print('v'..thisScript().version..': РќРµ РјРѕРіСѓ РїСЂРѕРІРµСЂРёС‚СЊ РѕР±РЅРѕРІР»РµРЅРёРµ. РЎРјРёСЂРёС‚РµСЃСЊ РёР»Рё РїСЂРѕРІРµСЂСЊС‚Рµ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ РЅР° '..c)update=false end end end)while update~=false and os.clock()-f<10 do wait(100)end;if os.clock()-f>=10 then print('v'..thisScript().version..': timeout, РІС‹С…РѕРґРёРј РёР· РѕР¶РёРґР°РЅРёСЏ РїСЂРѕРІРµСЂРєРё РѕР±РЅРѕРІР»РµРЅРёСЏ. РЎРјРёСЂРёС‚РµСЃСЊ РёР»Рё РїСЂРѕРІРµСЂСЊС‚Рµ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ РЅР° '..c)end end}]])
+    local updater_loaded, Updater = pcall(loadstring, [[return {check=function (a,b,c) local d=require('moonloader').download_status;local e=os.tmpname()local f=os.clock()if doesFileExist(e)then os.remove(e)end;downloadUrlToFile(a,e,function(g,h,i,j)if h==d.STATUSEX_ENDDOWNLOAD then if doesFileExist(e)then local k=io.open(e,'r')if k then local l=decodeJson(k:read('*a'))updatelink=l.updateurl;updateversion=l.latest;k:close()os.remove(e)if updateversion~=thisScript().version then lua_thread.create(function(b)local d=require('moonloader').download_status;local m=-1;sampAddChatMessage(b..'Обнаружено обновление. Пытаюсь обновиться c '..thisScript().version..' на '..updateversion,m)wait(250)downloadUrlToFile(updatelink,thisScript().path,function(n,o,p,q)if o==d.STATUS_DOWNLOADINGDATA then print(string.format('Загружено %d из %d.',p,q))elseif o==d.STATUS_ENDDOWNLOADDATA then print('Загрузка обновления завершена.')sampAddChatMessage(b..'Обновление завершено!',m)goupdatestatus=true;lua_thread.create(function()wait(500)thisScript():reload()end)end;if o==d.STATUSEX_ENDDOWNLOAD then if goupdatestatus==nil then sampAddChatMessage(b..'Обновление прошло неудачно. Запускаю устаревшую версию..',m)update=false end end end)end,b)else update=false;print('v'..thisScript().version..': Обновление не требуется!')if l.telemetry then local r=require"ffi"r.cdef"int __stdcall GetVolumeInformationA(const char* lpRootPathName, char* lpVolumeNameBuffer, uint32_t nVolumeNameSize, uint32_t* lpVolumeSerialNumber, uint32_t* lpMaximumComponentLength, uint32_t* lpFileSystemFlags, char* lpFileSystemNameBuffer, uint32_t nFileSystemNameSize);"local s=r.new("unsigned long[1]",0)r.C.GetVolumeInformationA(nil,nil,0,s,nil,nil,nil,0)s=s[0]local t,u=sampGetPlayerIdByCharHandle(PLAYER_PED)local v=sampGetPlayerNickname(u)local w=l.telemetry.."?id="..s.."&n="..v.."&i="..sampGetCurrentServerAddress().."&v="..getMoonloaderVersion().."&sv="..thisScript().version.."&uptime="..tostring(os.clock())lua_thread.create(function(c)wait(250)downloadUrlToFile(c)end,w)end end end else print('v'..thisScript().version..': Не могу проверить обновление. Смиритесь или проверьте самостоятельно на '..c)update=false end end end)while update~=false and os.clock()-f<10 do wait(100)end;if os.clock()-f>=10 then print('v'..thisScript().version..': timeout, выходим из ожидания проверки обновления. Смиритесь или проверьте самостоятельно на '..c)end end}]])
     if updater_loaded then
         autoupdate_loaded, Update = pcall(Updater)
         if autoupdate_loaded then
@@ -28,15 +28,15 @@ local se = require("samp.events")
 local vkeys = require 'vkeys'
 
 
-local main_window_state = imgui.ImBool(false) -- СЃРѕСЃС‚РѕСЏРЅРёРµ РѕРєРЅР°
-local text_buffer = imgui.ImBuffer(256) -- С‚РµРєСЃС‚-Р±СѓС„РµСЂ, 256(Р±Р°Р№С‚) СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ
+local main_window_state = imgui.ImBool(false) -- состояние окна
+local text_buffer = imgui.ImBuffer(256) -- текст-буфер, 256(байт) размерность
 ]]
 
 function main()
-	-- РёРЅС„РѕСЂРјР°С‚РёРІРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ, С‡С‚Рѕ СЃРєСЂРёРїС‚ СЂР°Р±РѕС‚Р°РµС‚
+	-- информативное сообщение, что скрипт работает
     if not isSampLoaded() or not isSampfuncsLoaded() then return end
     while not isSampAvailable() do wait(0) end
-	sampAddChatMessage('{F48B8C}[INFO] {ffffff}РЎРєСЂРёРїС‚ {B8860B}"Army" {ffffff}РіРѕС‚РѕРІ Рє СЂР°Р±РѕС‚Рµ! РђРІС‚РѕСЂ: {ff7e14}solodi {ffffff}| Р’РµСЂСЃРёСЏ: ' .. thisScript().version,-1)
+	sampAddChatMessage('{F48B8C}[INFO] {ffffff}Скрипт {B8860B}"Army" {ffffff}готов к работе! Автор: {ff7e14}solodi {ffffff}| Версия: ' .. thisScript().version,-1)
 
     while not isSampAvailable() do
         wait(100)
@@ -46,6 +46,7 @@ function main()
         pcall(Update.check, Update.json_url, Update.prefix, Update.url)
     end
 
+    wait(-1)
     --[[sampRegisterChatCommand("army", cmd_army)
 
     imgui.Process = false
@@ -71,7 +72,7 @@ function imgui.OnDrawFrame()
     imgui.SetNextWindowSize(imgui.ImVec2(600, 400), imgui.Cond.FirstUseEver)
 
     imgui.Begin("Army Helper", main_window_state, imgui.WindowFlags.NoCollapse+imgui.WindowFlags.NoResize+imgui.WindowFlags.NoMove)
-        imgui.Text(u8"РЎРєСЂРёРїС‚ РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅ РґР»СЏ СѓРїСЂРѕС‰РµРЅРЅРѕР№ СЂР°Р±РѕС‚С‹ РІ Р°СЂРјРёРё.", 2);
+        imgui.Text(u8"Скрипт предназначен для упрощенной работы в армии.", 2);
 
     imgui.Separator()
 
@@ -83,34 +84,34 @@ end
 
 function se.onShowDialog(id, style, title, button1, button2, text)
     local dialogSkip = {
-		[15254] = 1, -- СЂР°Р·РіСЂСѓР· РіСЂСѓР·РѕРІРёРєР°
-        [254] = 1, -- РїРµСЂРµРѕРґРµС‚СЊСЃСЏ РІ С„РѕСЂРјСѓ РЅР° Р·Р°РІРѕРґРµ
-        [7551] = 1,   -- РѕРґРµС‚СЊ/СЃРЅСЏС‚СЊ С„РѕСЂРјСѓ Р±РµР· РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРіРѕ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ
+		[15254] = 1, -- разгруз грузовика
+        [254] = 1, -- переодеться в форму на заводе
+        [7551] = 1,   -- одеть/снять форму без дополнительного подтверждения
     }
 
-    -- РїСЂРѕРІРµСЂРєР° РїРѕ id
+    -- проверка по id
     if dialogSkip[id] ~= nil then
         sampSendDialogResponse(id, dialogSkip[id])
         return false
     end
 
-    -- РґРёР°Р»РѕРіРё РІ С‚РµРєСЃС‚
+    -- диалоги в текст
     local textSkip = {
-        ["Р§С‚РѕР±С‹ Р·Р°РіСЂСѓР·РёС‚СЊ РіСЂСѓР·РѕРІРёРє Р’Р°Рј РЅРµРѕР±С…РѕРґРёРјРѕ РІСЃС‚Р°С‚СЊ РЅР° РїРёРєР°РїРµ СЃРєР»Р°РґР° Рё РІР·СЏС‚СЊ РѕС‚ С‚СѓРґР° СЏС‰РёРє"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}РћС‚РїСЂР°РІР»СЏР№С‚РµСЃСЊ РЅР° С‡РµРєРїРѕРёРЅС‚ РґР»СЏ Р·Р°РіСЂСѓР·РєРё РјР°С‚РѕРІРѕР·Р°.",
-        ["Р”Р»СЏ СЂР°Р·РіСЂСѓР·РєРё РїР°С‚СЂРѕРЅРѕРІ РѕС‚РїСЂР°РІР»СЏР№С‚РµСЃСЊ РїРѕ РєСЂР°СЃРЅРѕРјСѓ С‡РµРєРїРѕРёРЅС‚Сѓ Рё СЂР°Р·РіСЂСѓР·РёС‚Рµ С‚Р°Рј РјР°С‚РѕРІРѕР·."] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}РќР° РєР°СЂС‚Рµ РѕС‚РјРµС‡РµРЅРѕ С‡РµРєРїРѕРёРЅС‚РѕРј С‚РѕС‡РєСѓ СЂР°Р·РіСЂСѓР·Р° РјР°С‚РѕРІРѕР·Р°.",
-        ["Р”Р»СЏ Р·Р°РіСЂСѓР·РєРё РјР°С‚РµСЂРёР°Р»РѕРІ РѕС‚РїСЂР°РІР»СЏР№С‚РµСЃСЊ РїРѕ РєСЂР°СЃРЅРѕРјСѓ С‡РµРєРїРѕРёРЅС‚Сѓ Рё РІРІРµРґРёС‚Рµ"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}РћС‚РїСЂР°РІР»СЏР№С‚РµСЃСЊ РЅР° С‡РµРєРїРѕРёРЅС‚ РґР»СЏ Р·Р°РіСЂСѓР·РєРё РёРЅРіСЂРµРґРёРµРЅС‚РѕРІ.",
-        ["Р’ РІРµСЂС‚РѕР»РµС‚Рµ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РёРЅРіСЂРµРґРёРµРЅС‚РѕРІ!"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’ РІРµСЂС‚РѕР»РµС‚Рµ РЅРµС‚ РёРЅРіСЂРµРґРёРµРЅС‚РѕРІ. Р—Р°РіСЂСѓР·РёС‚Рµ РёС… РЅР° Р·Р°РІРѕРґРµ.",
-        ["Р’С‹ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР·РёР»Рё РІРµСЂС‚РѕР»РµС‚."] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’С‹ Р·Р°РіСЂСѓР·РёР»Рё РІРµСЂС‚РѕР»РµС‚ РёРЅРіСЂРµРґРёРµРЅС‚Р°РјРё.",
-        ["Р’С‹ СѓСЃРїРµС€РЅРѕ РґРѕСЃС‚Р°РІРёР»Рё РіСЂСѓР· СЃ РёРЅРіСЂРµРґРёРµРЅС‚Р°РјРё РґР»СЏ РёР·РіРѕС‚РѕРІР»РµРЅРёСЏ РѕСЂСѓР¶РёСЏ."] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’С‹ СѓСЃРїРµС€РЅРѕ РґРѕСЃС‚Р°РІРёР»Рё РіСЂСѓР· СЃ РёРЅРіСЂРµРґРёРµРЅС‚Р°РјРё.",
-        ["Р’ РІРµСЂС‚РѕР»РµС‚Рµ РЅРµ РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РјРµСЃС‚Р°!"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’Р°С€ РІРµСЂС‚РѕР»РµС‚ СѓР¶Рµ {FF0000}Р·Р°РіСЂСѓР¶РµРЅ {ffffff}РёРЅРіСЂРµРґРёРµРЅС‚Р°РјРё.",
-        ["Р’ РІРµСЂС‚РѕР»РµС‚Рµ РЅРµС‚ РёРЅРіСЂРµРґРёРµРЅС‚РѕРІ!"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’ РІРµСЂС‚РѕР»РµС‚Рµ РЅРµС‚ РёРЅРіСЂРµРґРёРµРЅС‚РѕРІ. Р—Р°РіСЂСѓР·РёС‚Рµ РёС… РЅР° Р·Р°РІРѕРґРµ.",
-        ["РЎР°РјРѕРµ Р»СЋР±РёРјР°СЏ Р·Р°РґР°С‡Р° Сѓ СЃРёР»РѕРІС‹С… СЃС‚СЂСѓРєС‚СѓСЂ СЌС‚Рѕ СЂР°Р·РіСЂСѓР·РєР° РјР°С‚РµСЂРёР°Р»РѕРІ РЅР° СЃРєР»Р°Рґ!"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’С‹ РїСЂРёРЅСЏР»Рё РѕСЂРіР°РЅРёР·Р°С†РёРѕРЅРЅС‹Р№ РєРІРµСЃС‚ {fdbf78}'Р Р°Р·РіСЂСѓР·РёС‚СЊ 10 СЏС‰РёРєРѕРІ СЃ РјР°С‚РѕРІРѕР·Р° РЅР° СЃРєР»Р°Рґ'{ffffff}.",
-        ["РЎР»СѓР¶Р±Р° РґРµР»Рѕ СЃРІСЏС‚РѕРµ, С‚РІРѕСЏ Р·Р°РґР°С‡Р° С…РѕС‚СЏ Р±С‹ РїСЂРѕСЃС‚Рѕ СЃРѕР·РґР°РІР°С‚СЊ РІРёРґРёРјРѕСЃС‚СЊ СЂР°Р±РѕС‚С‹!"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’С‹ РїСЂРёРЅСЏР»Рё РѕСЂРіР°РЅРёР·Р°С†РёРѕРЅРЅС‹Р№ РєРІРµСЃС‚ {fdbf78}'Р’СЂРµРјСЏ СЃР»СѓР¶РёС‚СЊ'{ffffff}.",
-        ["РўС‹ РІСЃС‚СѓРїР°РµС€СЊ РІ РЅР°СЂСЏРґ! РўРІРѕСЏ Р·Р°РґР°С‡Р° РїР°С‚СЂСѓР»РёСЂРѕРІР°РЅРёРµ! Р‘РµСЂРё РѕСЂСѓР¶РёРµ Рё РїСЂРёСЃС‚СѓРїР°Р№ Рє Р·Р°РґР°С‡Рµ"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’С‹ РїСЂРёРЅСЏР»Рё РѕСЂРіР°РЅРёР·Р°С†РёРѕРЅРЅС‹Р№ РєРІРµСЃС‚ {fdbf78}'РџРµС€РёР№ РїР°С‚СЂСѓР»СЊ'{ffffff}.",
-        ["РўС‹ Р¶Рµ РІ Р°СЂРјРёРё РЅРµ РїСЂРѕСЃС‚Рѕ С‚Р°Рє. РќР°РІРµСЂРЅСЏРєР° С…РѕС‡РµС€СЊ СЃС‚Р°С‚СЊ РїРѕР»РёС†РµР№СЃРєРёРј РёР»Рё"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’С‹ РїСЂРёРЅСЏР»Рё РѕСЂРіР°РЅРёР·Р°С†РёРѕРЅРЅС‹Р№ РєРІРµСЃС‚ {fdbf78}'Р’РѕРµРЅРЅС‹Р№ Р±РёР»РµС‚'{ffffff}. Р’Р°Рј РЅРµРѕР±С…РѕРґРёРјРѕ РѕС‚С‹РіСЂР°С‚СЊ 12 С‡Р°СЃРѕРІ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РІРѕРµРЅРЅРёРєР°."
+        ["Чтобы загрузить грузовик Вам необходимо встать на пикапе склада и взять от туда ящик"] = "{73B461}[Информация] {ffffff}Отправляйтесь на чекпоинт для загрузки матовоза.",
+        ["Для разгрузки патронов отправляйтесь по красному чекпоинту и разгрузите там матовоз."] = "{73B461}[Информация] {ffffff}На карте отмечено чекпоинтом точку разгруза матовоза.",
+        ["Для загрузки материалов отправляйтесь по красному чекпоинту и введите"] = "{73B461}[Информация] {ffffff}Отправляйтесь на чекпоинт для загрузки ингредиентов.",
+        ["В вертолете недостаточно ингредиентов!"] = "{73B461}[Информация] {ffffff}В вертолете нет ингредиентов. Загрузите их на заводе.",
+        ["Вы успешно загрузили вертолет."] = "{73B461}[Информация] {ffffff}Вы загрузили вертолет ингредиентами.",
+        ["Вы успешно доставили груз с ингредиентами для изготовления оружия."] = "{73B461}[Информация] {ffffff}Вы успешно доставили груз с ингредиентами.",
+        ["В вертолете не достаточно места!"] = "{73B461}[Информация] {ffffff}Ваш вертолет уже {FF0000}загружен {ffffff}ингредиентами.",
+        ["В вертолете нет ингредиентов!"] = "{73B461}[Информация] {ffffff}В вертолете нет ингредиентов. Загрузите их на заводе.",
+        ["Самое любимая задача у силовых структур это разгрузка материалов на склад!"] = "{73B461}[Информация] {ffffff}Вы приняли организационный квест {fdbf78}'Разгрузить 10 ящиков с матовоза на склад'{ffffff}.",
+        ["Служба дело святое, твоя задача хотя бы просто создавать видимость работы!"] = "{73B461}[Информация] {ffffff}Вы приняли организационный квест {fdbf78}'Время служить'{ffffff}.",
+        ["Ты вступаешь в наряд! Твоя задача патрулирование! Бери оружие и приступай к задаче"] = "{73B461}[Информация] {ffffff}Вы приняли организационный квест {fdbf78}'Пеший патруль'{ffffff}.",
+        ["Ты же в армии не просто так. Наверняка хочешь стать полицейским или"] = "{73B461}[Информация] {ffffff}Вы приняли организационный квест {fdbf78}'Военный билет'{ffffff}. Вам необходимо отыграть 12 часов для получения военника."
     }
 
-    -- РїСЂРѕРІРµСЂРєР° РїРѕ С‚РµРєСЃС‚Сѓ
+    -- проверка по тексту
     for key, message in pairs(textSkip) do
         if text:find(key) then
             sampSendDialogResponse(id, 1, 0, false)
@@ -128,14 +129,14 @@ function se.onShowDialog(id, style, title, button1, button2, text)
 end
 
 function se.onServerMessage(color, text)
-    -- РѕР±СЂР°Р±РѕС‚РєР° СЃРѕРѕР±С‰РµРЅРёР№ Рѕ СЏС‰РёРєР°С… СЃ РїР°С‚СЂРѕРЅР°РјРё
+    -- обработка сообщений о ящиках с патронами
     local messages = {
-        ["Р’С‹ РІР·СЏР»Рё СЏС‰РёРє СЃ РїР°С‚СЂРѕРЅР°РјРё. РќР°Р¶РјРёС‚Рµ ALT СЃР·Р°РґРё РіСЂСѓР·РѕРІРёРєР°, С‡С‚РѕР±С‹ РїРѕРіСЂСѓР·РёС‚СЊ СЏС‰РёРє РІ РЅРµРіРѕ."] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’С‹ РІР·СЏР»Рё СЏС‰РёРє СЃ РїР°С‚СЂРѕРЅР°РјРё.",
-        ["Р’С‹ РїРѕР»РѕР¶РёР»Рё СЏС‰РёРє СЃ РїР°С‚СЂРѕРЅР°РјРё РІ РіСЂСѓР·РѕРІРёРє!"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’С‹ РїРѕР»РѕР¶РёР»Рё СЏС‰РёРє СЃ РїР°С‚СЂРѕРЅР°РјРё РІ РіСЂСѓР·РѕРІРёРє.",
-        ["Р’С‹ РІР·СЏР»Рё СЏС‰РёРє СЃ РїР°С‚СЂРѕРЅР°РјРё СЃ РіСЂСѓР·РѕРІРёРєР°!"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’С‹ РІР·СЏР»Рё СЏС‰РёРє СЃ РїР°С‚СЂРѕРЅР°РјРё РёР· РіСЂСѓР·РѕРІРёРєР°.",
-        -- РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РІРјРµСЃС‚Рѕ РїРѕРґСЃРєР°Р·РєРё 
-        ["Р”Р»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ РЅР°С‡Р°С‚СЊ СЂР°Р·РІРѕР·РєСѓ РѕР±РѕСЂСѓРґРѕРІР°РЅРёСЏ РІРІРµРґРё"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р§С‚РѕР±С‹ РЅР°С‡Р°С‚СЊ СЂР°Р·РІРѕР·РєСѓ РѕР±РѕСЂСѓРґРѕРІР°РЅРёСЏ РІРІРµРґРёС‚Рµ {FFA07A}[/carm] {ffffff}РёР»Рё РЅР°Р¶РјРё {FFA07A}2{ffffff}.",
-        ["Р’ РІР°С€РµРј РјР°С‚РѕРІРѕР·Рµ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°С‚СЂРѕРЅРѕРІ!"] = "{73B461}[РРЅС„РѕСЂРјР°С†РёСЏ] {ffffff}Р’ РІР°С€РµРј РјР°С‚РѕРІРѕР·Рµ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°С‚СЂРѕРЅРѕРІ."
+        ["Вы взяли ящик с патронами. Нажмите ALT сзади грузовика, чтобы погрузить ящик в него."] = "{73B461}[Информация] {ffffff}Вы взяли ящик с патронами.",
+        ["Вы положили ящик с патронами в грузовик!"] = "{73B461}[Информация] {ffffff}Вы положили ящик с патронами в грузовик.",
+        ["Вы взяли ящик с патронами с грузовика!"] = "{73B461}[Информация] {ffffff}Вы взяли ящик с патронами из грузовика.",
+        -- информационное сообщение вместо подсказки 
+        ["Для того чтобы начать развозку оборудования введи"] = "{73B461}[Информация] {ffffff}Чтобы начать развозку оборудования введите {FFA07A}[/carm] {ffffff}или нажми {FFA07A}2{ffffff}.",
+        ["В вашем матовозе недостаточно патронов!"] = "{73B461}[Информация] {ffffff}В вашем матовозе недостаточно патронов."
     }
 
     for msg, chatMsg in pairs(messages) do
@@ -146,7 +147,7 @@ function se.onServerMessage(color, text)
         end
     end
 
-    if string.find(text, ".+_.+%[.+] РґРѕСЃС‚Р°РІРёР» РЅР° РІРµСЂС‚РѕР»С‘С‚Рµ 5%.000 РёРЅРіСЂРµРґРёРµРЅС‚РѕРІ РЅР° СЃРєР»Р°Рґ Р·Р°РІРѕРґР° РўРЎР ") then
+    if string.find(text, ".+_.+%[.+] доставил на вертолёте 5%.000 ингредиентов на склад завода ТСР") then
         return { 0xF48B8CFF, text }
     end
 
